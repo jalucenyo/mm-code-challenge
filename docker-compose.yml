@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://db:27017/masmovil
+    networks:
+      - mm-net
+
+  db:
+    image: mongo:latest
+    container_name: dbmongo
+    restart: always
+    env_file: .env
+    ports:
+      - 27017:27017
+    volumes:
+      - db-data:/data/db
+    networks:
+      - mm-net
+
+volumes:
+  db-data:
+
+networks:
+  mm-net:

@@ -1,0 +1,12 @@
+app:
+  name: '@pom.artifactId@'
+  version: '@pom.version@'
+
+spring:
+  application:
+    name: mm-code
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/masmovil
+      uuid-representation: standard
